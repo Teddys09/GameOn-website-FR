@@ -292,12 +292,13 @@ input {
 .formData[data-error-visible='true'] .text-control {
   border: 2px solid #e54858;
 }
-/* 
-input[data-error]::after {
-    content: attr(data-error);
-    font-size: 0.4em;
-    color: red;
-} */
+
+.error-msg {
+  content: attr(data-error);
+  font-size: 0.4em;
+  color: red;
+}
+
 .checkbox-label,
 .checkbox2-label {
   position: relative;
@@ -544,6 +545,33 @@ footer {
   padding-right: 2vw;
   margin: 0 20px;
 }
+.sucess {
+  height: 80vh;
+}
+.sucess h2 {
+  top: 44%;
+  position: sticky;
+  font-size: 36px;
+  font-weight: 400;
+  line-height: 51px;
+  letter-spacing: 0em;
+  text-align: center;
+}
+.button-close {
+  position: relative;
+  top: 80%;
+  width: 182.55px;
+  height: 40px;
+  left: 34%;
+  font-size: 14px;
+  background: #fe142f;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
 @media screen and (max-width: 430px) {
   main {
     margin: 3.5%;

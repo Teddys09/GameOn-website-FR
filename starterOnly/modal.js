@@ -112,7 +112,6 @@ const inputs = document.querySelectorAll('input');
 console.log(inputs);
 inputs.forEach((input) => {
   input.addEventListener('input', (e) => {
-    console.log(e.target.value);
     const errorMsg = document.createElement('span');
     errorMsg.classList.add('error-msg');
     const selectMsg = document.querySelector('.error-msg');
@@ -166,6 +165,7 @@ inputs.forEach((input) => {
       const regx = /^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/;
       if (regx.test(e.target.value)) {
         e.target.style.border = '1px solid green';
+
         if (selectMsg !== null) {
           selectMsg.remove();
         }
@@ -202,15 +202,15 @@ inputs.forEach((input) => {
     }
     if (e.target.id === 'checkbox1') {
       if (e.target.checked) {
-        e.target.style.border = '1px solid green';
+        document.querySelector('#checkbox2').style.border = '1px solid green';
         if (selectMsg !== null) {
           selectMsg.remove();
         }
-      } else if (selectMsg === null) {
-        e.target.style.border = '1px solid red';
+      } else if (selectMsg === null && !e.target.checked) {
+        document.querySelector('#checkbox2').style.border = '1px solid red';
         errorMsg.innerHTML =
           'Vous devez vérifier que vous acceptez les termes et conditions.';
-        e.target.after(errorMsg);
+        document.querySelector('#checkbox2').after(errorMsg);
       }
     }
   });
@@ -232,6 +232,7 @@ function submitForm(e) {
   if (!isFirstValid()) return;
   if (!isLastValid()) return;
   if (!isEmailValid()) return;
+  if (!isBirthdateValid()) return;
   if (!isQuantityValid()) return;
   if (!isLocationValid()) return;
   if (!isCheckboxValid()) return;
@@ -317,13 +318,14 @@ function isLocationValid() {
   }
   return false;
 }
-console.log(inputs[6]);
+
 // isCheckboxValid function
 function isCheckboxValid() {
-  if (inputs[6].checked === false) {
+  if (inputs[11].checked === true) {
     return true;
   } else {
     alert('Vous devez vérifier que vous acceptez les termes et conditions.');
   }
   return false;
 }
+console.log(inputs[11]);

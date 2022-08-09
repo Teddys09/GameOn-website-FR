@@ -43,7 +43,6 @@ const modalbg = document.querySelector('.bground');
 const modalBtn = document.querySelectorAll('.modal-btn');
 const formData = document.querySelectorAll('.formData');
 const xButton = document.querySelector('.close');
-console.log(modalbg);
 
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener('click', launchModal));
@@ -88,7 +87,6 @@ const location6 = document.querySelector('#location6');
 const checkbox1 = document.querySelector('#checkbox1');
 //checkbox2
 const checkbox2 = document.querySelector('#checkbox2');
-console.log(formData);
 
 const formDataInput = {
   firstName,
@@ -109,7 +107,7 @@ const formDataInput = {
 
 const inputs = document.querySelectorAll('input');
 // event Listeners for each input
-console.log(inputs);
+
 inputs.forEach((input) => {
   input.addEventListener('input', (e) => {
     const errorMsg = document.createElement('span');
@@ -229,8 +227,10 @@ submitBtn.addEventListener('click', (e) => submitForm(e));
 // submitForm function
 function submitForm(e) {
   e.preventDefault();
-  if (!isFirstValid()) return;
-  if (!isLastValid()) return;
+
+  if (!isTextInputValid(inputs[0])) return;
+  if (!isTextInputValid(inputs[1])) return;
+
   if (!isEmailValid()) return;
   if (!isBirthdateValid()) return;
   if (!isQuantityValid()) return;
@@ -258,21 +258,11 @@ function submitForm(e) {
   document.querySelector('.content').style.display = 'none';
 }
 
-// isFirstValid function
-console.log(inputs[0]);
-function isFirstValid() {
+// is first and last Name Valid
+
+function isTextInputValid(input) {
   const regx = /^[A-ZÀ-ÿ][-,a-z. ']+[ ]*$/;
-  if (inputs[0].value.length >= 2 && regx.test(inputs[0].value)) {
-    return true;
-  } else {
-    alert('Veuillez entrer 2 caractères ou plus pour le champ du nom.');
-  }
-  return false;
-}
-// isLastValid function
-function isLastValid() {
-  const regx = /([A-ZÀ-ÿ][-,a-z. ']+[ ]*)+$/;
-  if (inputs[1].value.length >= 2 && regx.test(inputs[1].value)) {
+  if (input.value.length >= 2 && regx.test(input.value)) {
     return true;
   } else {
     alert('Veuillez entrer 2 caractères ou plus pour le champ du nom.');
@@ -328,4 +318,3 @@ function isCheckboxValid() {
   }
   return false;
 }
-console.log(inputs[11]);
